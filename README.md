@@ -1,20 +1,23 @@
-# Water PlantUml :seedling::droplet: 
+# Water PlantUml :seedling::droplet:
 
 [![npm version](https://badge.fury.io/js/water-plant-uml.svg)](https://badge.fury.io/js/water-plant-uml)
 
 CLI tool for live-reloading and/or exporting PlantUML diagrams using the default PlantUML server or a local Docker server.
 
 Install globally via npm with:
+
 ```
 npm i -g plant-water-uml
 ```
 
 Begin live reloading a .puml file from your CLI with:
+
 ```
 water-uml live example.puml
 ```
 
 ### Contents
+
 - [Example Files](https://github.com/Ebonsignori/plant-uml-water/tree/master/examples)
 - [Usage](#usage)
 - [Markdown](#markdown)
@@ -22,6 +25,7 @@ water-uml live example.puml
 - [Using a local Docker PlantUML server](#using-a-local-docker-plantuml-server)
 
 ## Usage
+
 ```
 Usage: water-uml <command> <filename.puml> [options]
 
@@ -36,6 +40,8 @@ Options:
   -f, --file-type      Output filetype of PlantUML diagram export
                                                           [string] [choices: "svg", "png", "txt", "md"] [default: "svg"]
   -r, --remote-server  Server used for rendering images.          [string] [default: "http://www.plantuml.com/plantuml"]
+  -R, --root           Root of your UML files. This allows you to include files from root
+                                                          [string] [default: current working dir]
   -o, --output         Output path of export. Defaults to input-file-path.<file-type>                           [string]
   -h, --help           Show help                                                                               [boolean]
       --version        Show version number                                                                     [boolean]
@@ -69,11 +75,12 @@ See [example.puml](https://github.com/Ebonsignori/plant-uml-water/blob/master/ex
 
 ## Using a local Docker PlantUML server
 
-If you need to be offline or want to run a local server with custom options, you can spin up a PlantUML server in a Docker container. 
+If you need to be offline or want to run a local server with custom options, you can spin up a PlantUML server in a Docker container.
 
 Pass the `-l` flag to use a local PlantUML server running on port `8792` by default, or specify the PlantUML server's port with the `-d` flag.
 
 For example, to use a server running on `localhost:8675` for converting a .puml,
+
 ```
 water-uml export example.puml -l -d 8675
 ```
@@ -81,15 +88,19 @@ water-uml export example.puml -l -d 8675
 You can start a local PlantUML server on `localhost:8675` via Docker using the following:
 
 1. Create/Initialize PlantUML server container
+
 ```
 docker run -d -p 8792:8080 --name plantuml-server plantuml/plantuml-server:jetty
 ```
+
 2. Stop the PlantUML server container
+
 ```
 docker stop plantuml-server
 ```
+
 3. Start stopped PlantUML server container
+
 ```
 docker start plantuml-server
 ```
-
